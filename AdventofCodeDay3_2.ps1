@@ -23,15 +23,8 @@ For ($Route = 1; $Route -le 5; $Route++) {
         $Y = $Y + $YRoute
         $X = $X + $XRoute
         #Assume jump left to start when end of row is reached
-        Switch ($Y) {
-            31 {$Y = 0}
-            32 {$Y = 1}
-            33 {$y = 2}
-            34 {$Y = 3}
-            35 {$Y = 4}
-            36 {$Y = 5}
-            37 {$Y = 6}
-            default {}
+        If ($Y -ge $width) {
+            $Y = $Y - $width
         }
 
         #Start Sledding!
