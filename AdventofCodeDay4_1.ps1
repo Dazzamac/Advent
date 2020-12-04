@@ -1,31 +1,29 @@
 ﻿$PPData = Get-content .\Day4Input.txt
 $Passport =  @{}
 $Valid = 0
-$PPCount = 0
 
-$PPData | ForEach {
-    If ($_){
-        $_.Split(" ") | ForEach {
-            $Key,$Value = $_.Split(":")
-            $Passport.Add($key,$value)
+
+$PPData | ForEach {#Iterate each line
+    If ($_){#Check if line is blank or not
+        $_.Split(" ") | ForEach { #Separate each item field and iterate
+            $Key,$Value = $_.Split(":")#Create Keypairs
+            $Passport.Add($key,$value)#Add keypairs to hash
         }
-        If (($Passport.Count -eq 7 -and !($Passport.CID)) -or ($Passport.count -eq 8)){ 
-        $Valid ++
-        $Passport | out-file pass.txt -append
+        If (($Passport.Count -eq 7 -and !($Passport.CID)) -or ($Passport.count -eq 8)){ #Check if all data is complete or at least only CID is missing
+        $Valid ++ #Update valid count
+        $Passport | out-file pass.txt -append #Add valid passport data to file for troubleshooting and verification
         
         }  
         
- #Blank Line, reset $Passport variable########        
+ #########Blank Line, reset $Passport variable########        
     } Else {
-        #If ($PPCount -gt 100) {Break}
-        
+                
         $Passport = @{}
-        $PPCount ++
-        
+               
     }
 
         
         
   }
 
-  $Valid
+  $Valid # Return result
