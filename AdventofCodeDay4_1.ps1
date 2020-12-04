@@ -27,3 +27,9 @@ $PPData | ForEach {#Iterate each line
   }
 
   $Valid # Return result
+  
+  If ($Passport.byr -and $Passport.iyr -and $Passport.eyr -and $Passport.hgt -and $Passport.hcl -and $Passport.ecl -and $Passport.pid <#-and $passport.cid#>){ 
+        $Valid ++
+
+        
+        }  
