@@ -1,8 +1,6 @@
 ﻿$PPData = Get-content .\Day4Input.txt
 $Passport =  @{}
 $Valid = 0
-$PPCount = 0
-$badpass = 0
 
 $PPData | ForEach {
     If ($_){
@@ -28,7 +26,7 @@ $PPData | ForEach {
         
         }
         $Passport = @{}
-        $PPCount ++
+        
         
     }
 
@@ -37,4 +35,4 @@ $PPData | ForEach {
   }
 
   $Valid
-  $badpass
+ 
