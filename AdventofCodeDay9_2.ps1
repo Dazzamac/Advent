@@ -27,50 +27,62 @@ Do{
         }While ($x -gt -1)
     $Stopcount--
 }While ($stopcount -gt 0)
-#################################################################
+
 
 $data[$i]
-
+#################################################################
+#Part 2#
+#################################################################
 
 $target = $data[$i]
 $sum = @()
 $Test = 0
-$i = ($data.length -1)
-$j = $i-1
-Do {
 
-    If ([int64]$data[$i] -lt $target){
-        $Sum += [int64]$data[$i]
-        Do {
-            
-            $Sum | ForEach { $Test += $_ }
-            If ([int64]$Test -lt $Target){
-                $Sum += [int64]$data[$i-$j]
-                $j--
-                Write-Host "Checking"  $i  "and" $j
-            } ElseIf ([int64]$Test -eq $Target) {
-                $i
-                $j
-                break
-            } Else {
-                
+#Loop through adding all subsequnet values to first value
+:ForI For ($i = 20; $i -lt $data.count; $i++) {
+    $Sum += [int64]$Data[$i]
+    Write-Host Write-Host -ForegroundColor Red -BackgroundColor Yellow "Trying " $Data[$i]
+    #Start Running Total
+    $Test += [int64]$Data[$i]
+    #Check that first value is less than target
+    If ($sum[0] -lt $target) {
+        #Loop subsequnt values
+        :ForJ For ($j = $i+1; $j -lt $data.count; $j++){
+            #Add next value to array of values
+            $Sum += [int64]$data[$j]
+            #Add sum of values to running total
+            $Test += [int64]$data[$j]
+            If ($Test -eq $Target){
+                Write-Host -ForegroundColor Red -BackgroundColor Yellow "Found!"
+                $Lowest = ($Sum | Sort | Select -First 1)
+                $Highest  = ($Sum | Sort | Select -Last 1)
+                $Result = $Lowest + $Highest
+                Write-Host "Adding"$lowest" and "$Highest" ="$Result
+                Break ForI
+            }
+            If ($Test -gt $Target){
+                Write-Host -BackgroundColor Red "Exceeded"
                 $Sum = @()
                 $Test = 0
-                Write-host -fore red -BackgroundColor Yellow "Exceeded"   
-                $i--
-                $j = $i-1
+                Break ForJ
+            } Else {
+                Write-Host "Adding "$Data[$j+1]
             }
-        } While ($J -gt 0)
-    
-        
-     
-     } Else { 
-     Write-host -fore red -BackgroundColor Yellow "Exceeded"
-     $i--
-     $j = $i-1} 
-}while ($i -gt -1)
 
-    
+        }#For J
+    } Else {
+        Write-Host -BackgroundColor Red "Initial Value Exceeded"
+    }
+}#For I
 
+
+
+
+
+
+
+
+
+   
     
 
