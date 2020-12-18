@@ -9,9 +9,12 @@ Do {
     $Y = $Y + 3
     $X = $X + 1
     #Assume jump left to start when end of row is reached
-    If ($Y -ge $width) {
-            $Y = $Y - $width
-        }
+    Switch ($Y) {
+        31 {$Y = 0}
+        32 {$Y = 1}
+        33 {$y = 2}
+        default {}
+    }
 
     #Start Sledding!
     $ToboRow = $Toboggan[$X].ToCharArray()

@@ -10,6 +10,8 @@ $Width = ($Toboggan[0].ToCharArray()).Length
 For ($Route = 1; $Route -le 5; $Route++) {
     [int]$Y = 0
     [int]$X = 0
+    
+    
     Switch ($Route) {
         1 {$YRoute = 1; $XRoute = 1}
         2 {$YRoute = 3; $XRoute = 1}
@@ -20,12 +22,13 @@ For ($Route = 1; $Route -le 5; $Route++) {
 
     Do {
         #Move forward a row
-        $Y = $Y + $YRoute
+        $Y = ($Y + $YRoute) % $width
         $X = $X + $XRoute
         #Assume jump left to start when end of row is reached
-        If ($Y -ge $width) {
-            $Y = $Y - $width
-        }
+        #If ($Y -ge $width) {
+        #    $Y = $Y - $width
+        #}
+       
 
         #Start Sledding!
         $ToboRow = $Toboggan[$X].ToCharArray()
