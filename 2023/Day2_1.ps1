@@ -76,8 +76,22 @@ Get-Content -Path .\Day2_Input.txt | ForEach-Object {
 
 $ValidGames = @()
 
-ForEach ($Game in $GameList){
-  ForEach ($Round in $Game) {
-    $RoundColour = $
+ForEach ($Game in $GameList.Keys){
+  Write-host -foregroundcolor yellow "Iterating $Game"
+  :BreakGame ForEach ($Round in $($Gamelist[$game])) {
+    Write-host -ForegroundColor blue "Checking Round $($Gameslist[$game].Indexof($Round))"
+    ForEach ($Colour in $MaxColours.Keys){
+      #If the value corresponding to the colour is greater than the maxvalue
+      #break from the game
+      If ($Round[$Colour] -gt $MaxColours[$Colour]){
+        Write-host -ForegroundColor Red "$Round[$Colour] -gt $MaxColours[$Colour]"
+        break BreakGame
+      }
+
+      
+    }
+    #If not broken from the game at his stage, add to list of valid games
+    Write-Host -ForegroundColor Green "$Round[$Colour] -le $MaxColours[$Colour]"
+    $ValidGames += $Game
   }
 }

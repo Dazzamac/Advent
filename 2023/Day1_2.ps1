@@ -15,7 +15,7 @@ Adding these together produces 142.
 Consider your entire calibration document. What is the sum of all of the calibration values?#>
 
 <#LOGIC
-Parse each line extracting only the integer values
+Parse each line converting string numbers to a string containing the integer
 Concatenate the first and last integer value on each line to form a two digit number
 If there is only one integer it is both first and last
 Sum all lines
