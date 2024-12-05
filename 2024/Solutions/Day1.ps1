@@ -55,7 +55,7 @@ For ($i = 0; $i -lt $OrderedLeft.Count; $i++) {
 }
 
 # Output the final total
-$Total
+Write-Host "Day 1 Part 1 Solution: $Total"
 
 
 #########################################################################################
@@ -77,4 +77,4 @@ ForEach ($Value in $Left) {
 }
 
 # Calculate the total similarity score by summing all similarity values
-($SimilarityValues | Measure-Object -Sum).Sum
+Write-Host "Day 1 Part 2 Solution: $(($SimilarityValues | Measure-Object -Sum).Sum)"
